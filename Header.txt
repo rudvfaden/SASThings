@@ -1,0 +1,22 @@
+/*<pre><b>
+/ Program   : ProgramName
+/ Version   : VersionNumber
+/ Author    : AutherName
+/ Date      : DDMMYY
+/ Purpose   : Description.
+/ SubMacros : BlankIfNonen
+/ Notes     : Notes
+/ Usage     : HowToCall
+/ 
+/===============================================================================
+/ PARAMETERS:
+/-------name------- -------------------------description------------------------
+/ ParameterName		Description
+/===============================================================================
+/ AMENDMENT HISTORY:
+/ init --date-- mod-id ----------------------description------------------------
+/ RVF	Date	VerNr	Description
+/===============================================================================
+/ This is public domain software. No guarantee as to suitability or accuracy is
+/ given or implied. User uses this code entirely at their own risk.
+/=============================================================================*/

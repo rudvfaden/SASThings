@@ -1,0 +1,67 @@
+proc fcmp outlib=funk.function.funcs;
+    function fridag(Dato) $15;
+        length retur $15;
+            aar = year(Dato);
+            a = mod(aar,19);
+            b = int(aar/100);
+            c = mod(aar,100);
+            d = int(b/4);
+            e = mod(b,4);
+            f = int((b+8)/25);
+            g = int((b-f+1)/3);
+            h = mod((19*a+b-d-g+15),30);
+            i = int(c/4);
+            k = mod(c,4);
+            l = mod((32+2*e+2*i-h-k),7);
+            m = int((a+11*h+22*l)/451);
+            n = int((h+l-7*m+114)/31);
+            p = mod((h+l-7*m+114),31);
+            paaske = mdy(n,p+1,aar);
+            if Dato               = paaske-3        then retur = "Skærtorsdag";
+            else if Dato          = paaske-2        then retur = "Langfredag";
+            else if Dato          = paaske+1        then retur = "2.Påskedag";
+            else if Dato          = paaske          then retur = "Påskedag";
+            else if Dato          = paaske+26       then retur = "Store bededag";
+            else if Dato          = paaske+39       then retur = "Kr. himmelfart";
+            else if Dato          = paaske+49       then retur = "pinsedag";
+            else if Dato          = paaske+50       then retur = "2. pinsedag";
+            else if Dato          = mdy(12,24,aar)  then retur = "Juleaftensdag";
+            else if Dato          = mdy(12,25,aar)  then retur = "Juledag";
+            else if Dato          = mdy(12,26,aar)  then retur = "2. juledag";
+            else if Dato          = mdy(01,01,aar)  then retur = "Nytårsdag";
+            else if weekday(Dato) = 7               then retur = "Lørdag";
+            else if weekday(Dato) = 1               then retur = "Søndag";
+            else retur = "Hverdag";
+    	return(retur);
+    endsub;
+
+    function arbdage(fraDato,TilDato);
+    if fraDato > TilDato then do;
+        put "ERROR: Value from > value to";
+        retur = .;
+    end;
+    else do;
+        count=0;
+        do i=fradato to TilDato;
+            if fridag(i)='Hverdag' then do;
+                count=count+1;
+            end;
+        end;
+        return(count);
+    end;
+    endsub;
+
+    function hdagnum();
+        count=0;
+        do i=mdy(month(today()),01,year(today())) to today();
+            if fridag(i)='Hverdag' then do;
+                count=count+1;
+            end;
+        end;
+        return(count);
+    endsub;
+run;
+quit;
+
+
+
