@@ -47,7 +47,9 @@ proc fcmp outlib=funk.function.funcs;
                 else if 37 <= pos0506 and pos0506 <=99 and pos07=9 then
                     fodselsdag=mdy(pos0304,pos0102,pos0506+1900);
         end;
-
+        else do:
+            put 'WARNING: cpr ' cpr ' is invalid';
+        end;
     return(fodselsdag);
 endsub;
 
